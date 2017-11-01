@@ -1,0 +1,13 @@
+
+###> System files ###
+.idea
+
+###< System files ###
+
+
+###> symfony/framework-bundle ###
+.env
+/public/bundles/
+/var/
+/vendor/
+###< symfony/framework-bundle ###
