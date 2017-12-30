@@ -1,16 +1,3 @@
-app_index:
-    path: /
-    controller: App\Controller\IndexController::index
-
-app_paypal_create_payment:
-    path: /paypal/create-payment
-    controller: App\Controller\PaypalController::number
-
 #index:
 #    path: /
-#    defaults: { _controller: 'App\Controller\DefaultController::index' }
-
-# first, run composer req annotations
-#controllers:
-#    resource: ../src/Controller/
-#    type: annotation
+#    controller: App\Controller\DefaultController::index
