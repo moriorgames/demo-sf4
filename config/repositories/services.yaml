@@ -1,0 +1,16 @@
+services:
+    app.article_repository:
+        class: App\Repository\ArticleRepository
+        factory:
+            - '@doctrine.orm.default_entity_manager'
+            - getRepository
+        arguments:
+            - App\Entity\Article
+
+    app.production_queue_repository:
+        class: App\Repository\ProductionQueueRepository
+        factory:
+            - '@doctrine.orm.default_entity_manager'
+            - getRepository
+        arguments:
+            - App\Entity\ProductionQueue
