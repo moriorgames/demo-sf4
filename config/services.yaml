@@ -33,6 +33,7 @@ services:
         public: true
         arguments:
             - '@app.article_repository'
+            - '@app.user_repository'
             - '@event_dispatcher'
 
     App\EventListener\ProductionQueueListener:

@@ -7,10 +7,10 @@ use Symfony\Component\HttpFoundation\Response;
 
 class ShopController
 {
-    public function purchase(int $id, PurchaseUseCase $useCase): Response
+    public function purchase(int $articleId, int $userId, PurchaseUseCase $useCase): Response
     {
         try {
-            $useCase->purchase($id);
+            $useCase->purchase($articleId, $userId);
         } catch (\Exception $e) {
             $e->getMessage();
 

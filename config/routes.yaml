@@ -3,5 +3,5 @@ app_ping:
     controller: App\Controller\DefaultController::ping
 
 app_shop_purchase:
-    path: /shop/purchase/{id}
+    path: /shop/purchase/{userId}/{articleId}
     controller: App\Controller\ShopController::purchase

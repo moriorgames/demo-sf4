@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Traits\IdentifiableTrait;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -11,32 +12,24 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Article
 {
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+    const SPECIAL_DISCOUNT = 0.90;
+
+    use IdentifiableTrait;
 
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    private $name = '';
 
     /**
      * @ORM\Column(type="decimal", scale=2)
      */
-    private $price;
+    private $price = 0.0;
 
     /**
      * @ORM\Column(type="text")
      */
-    private $description;
-
-    public function getId(): int
-    {
-        return $this->id;
-    }
+    private $description = '';
 
     public function getName(): string
     {
