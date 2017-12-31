@@ -2,6 +2,6 @@ app_ping:
     path: /ping
     controller: App\Controller\DefaultController::ping
 
-app_event_fire:
-    path: /event/{id}
-    controller: App\Controller\EventController::number
+app_shop_purchase:
+    path: /shop/purchase/{id}
+    controller: App\Controller\ShopController::purchase
