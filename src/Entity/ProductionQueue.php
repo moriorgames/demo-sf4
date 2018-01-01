@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
 use App\Entity\Traits\DateTimeTrait;
+use App\Entity\Traits\IdentifiableTrait;
+use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
@@ -12,14 +13,8 @@ use App\Entity\Traits\DateTimeTrait;
  */
 class ProductionQueue
 {
+    use IdentifiableTrait;
     use DateTimeTrait;
-
-    /**
-     * @ORM\Column(type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Article")
@@ -30,7 +25,7 @@ class ProductionQueue
     /**
      * @ORM\Column(type="boolean", options={"default"=false})
      */
-    private $processed;
+    private $processed = false;
 
     /**
      * ProductionQueue constructor.
@@ -39,11 +34,6 @@ class ProductionQueue
     {
         $this->updatedAt = new \DateTime;
         $this->processed = false;
-    }
-
-    public function getId(): int
-    {
-        return $this->id;
     }
 
     public function getArticle(): Article

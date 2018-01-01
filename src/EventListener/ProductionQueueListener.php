@@ -14,7 +14,7 @@ class ProductionQueueListener
         $this->repo = $repo;
     }
 
-    public function onRegister(ArticleQueueEvent $event)
+    public function onRegister(QueueEvent $event)
     {
         $queue = ProductionQueueFactory::create(
             $event->getArticle()
