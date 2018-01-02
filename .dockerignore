@@ -1,0 +1,6 @@
+
+.git
+.idea
+/public/bundles/*
+/var/*
+/vendor/*
