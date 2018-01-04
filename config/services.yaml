@@ -29,11 +29,14 @@ services:
 
 
     # Custom services
+    app.aws_logger:
+        class: App\Services\Logger\AwsLoggerService
+
     App\Services\Shop\PurchaseUseCase:
         public: true
         arguments:
-            - '@app.article_repository'
-            - '@app.user_repository'
+            - '@app.purchase_repositories'
+            - '@app.aws_logger'
             - '@event_dispatcher'
 
     App\EventListener\ProductionQueueListener:

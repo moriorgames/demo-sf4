@@ -1,0 +1,5 @@
+[2018-01-04 20:46:55] PHP Logging.INFO: Initial test of application logging.  
+[2018-01-04 20:46:55] PHP Logging.WARNING: Test of the warning system logging.  
+[2018-01-04 20:46:55] PHP Logging.NOTICE: Application Auth Event:  {"function":"login-action","result":"login-success"} 
+[2018-01-04 20:46:55] PHP Logging.NOTICE: Application Auth Event:  {"function":"login-action","result":"login-failure"} 
+[2018-01-04 20:46:55] PHP Logging.ERROR: Application ERROR: System Error  

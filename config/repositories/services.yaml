@@ -22,3 +22,9 @@ services:
             - getRepository
         arguments:
             - App\Entity\ProductionQueue
+
+    app.purchase_repositories:
+        class: App\Repository\PurchaseRepositories
+        arguments:
+            - '@app.article_repository'
+            - '@app.user_repository'
