@@ -8,23 +8,23 @@ use App\EventListener\QueueEvent;
 use App\EventListener\QueueEvents;
 use App\EventListener\PurchaseEvent;
 use App\Exceptions\OutOfFundsException;
-use App\Repository\ArticleRepository;
-use App\Repository\UserRepository;
+use App\Repository\PurchaseRepositories;
+use App\Services\Logger\AwsLoggerService;
 use Doctrine\ORM\EntityNotFoundException;
 use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class PurchaseUseCase
 {
-    private $articleRepo;
+    private $repo;
 
-    private $userRepo;
+    private $logger;
 
     private $dispatcher;
 
-    public function __construct(ArticleRepository $articleRepo, UserRepository $userRepo, EventDispatcher $dispatcher)
+    public function __construct(PurchaseRepositories $repo, AwsLoggerService $logger, EventDispatcher $dispatcher)
     {
-        $this->articleRepo = $articleRepo;
-        $this->userRepo = $userRepo;
+        $this->repo = $repo;
+        $this->logger = $logger;
         $this->dispatcher = $dispatcher;
     }
 
@@ -36,11 +36,11 @@ class PurchaseUseCase
      */
     public function purchase(int $articleId, int $userId)
     {
-        $article = $this->articleRepo->find($articleId);
+        $article = $this->repo->getArticleRepo()->find($articleId);
         if (!$article instanceof Article) {
             throw new EntityNotFoundException('Article with id ' . $userId . ' not found');
         }
-        $user = $this->userRepo->find($userId);
+        $user = $this->repo->getUserRepo()->find($userId);
         if (!$user instanceof User) {
             throw new EntityNotFoundException('User with id ' . $userId . ' not found');
         }
@@ -52,6 +52,7 @@ class PurchaseUseCase
         if (!$event->isPropagationStopped()) {
             $queueEvent = new QueueEvent($article);
             $this->dispatcher->dispatch(QueueEvents::REGISTERED, $queueEvent);
+            $this->logger->debug('Transaction Successful.', debug_backtrace());
         }
     }
 }
